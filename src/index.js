@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import ReactDOM from 'react-dom';
 import './styles.css';
 
@@ -30,6 +30,19 @@ function useToggle(initialValue) {
 
 function App() {
   const toggle = useToggle(false);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const resizeHandler = () => {
+      setWidth(window.innerWidth);
+      setHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', resizeHandler);
+
+    return () => window.removeEventListener('resize', resizeHandler);
+  });
 
   return (
     <div>
@@ -38,6 +51,9 @@ function App() {
         {`${toggle ? 'Hide it' : 'Show'} counter`}
       </button>
       { toggle.value && <Counter /> }
+      <h2>Window Measurement</h2>
+      <div>Measurement for width: {width}</div>
+      <div>Measurement for height: {height}</div>
     </div>
   );
 }
