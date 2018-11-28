@@ -2,21 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles.css';
 
-import Header from './Components/Header';
-import LoginForm from './Components/LoginForm';
-import UserManager from './Components/UserManager';
-
-export const UserContext = React.createContext({});
+//components
+import Select from './Components/Select';
+import Option from './Components/Option';
 
 function App() {
-
   return (
     <div>
-      <UserManager>
-        <h3>Dynamic Context</h3>
-        <Header />
-        <LoginForm />
-      </UserManager>
+      <h3>Select and option</h3>
+      <Select>
+        <Option value="blue">Blue</Option>
+        <Option value="red"> Red </Option>
+        <Option value="white"> White </Option>
+      </Select>
     </div>
   );
 }
