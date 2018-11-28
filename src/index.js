@@ -1,5 +1,6 @@
 import React, { useState, useEffect }  from 'react';
 import ReactDOM from 'react-dom';
+import useInput from './CustomHooks/useInput';
 import './styles.css';
 
 //components
@@ -29,7 +30,10 @@ function useToggle(initialValue) {
 }
 
 function App() {
+  const email = useInput('mike');
+  const password = useInput('');
   const toggle = useToggle(false);
+
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
 
@@ -52,8 +56,13 @@ function App() {
       </button>
       { toggle.value && <Counter /> }
       <h2>Window Measurement</h2>
+
       <div>Measurement for width: {width}</div>
       <div>Measurement for height: {height}</div>
+
+      <h2>Use Form</h2>
+        <div><input type="text" value={email.value} onChange={email.onChange} /></div>
+        <div><input type="password" value={password.value} onChange={password.onChange} /></div>
     </div>
   );
 }
